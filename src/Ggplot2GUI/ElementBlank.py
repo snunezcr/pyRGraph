@@ -19,7 +19,7 @@ from Element import Element
 
 class ElementBlank(Element):
     def __init__(self):
-        Element.__init__(True)
+        super(ElementBlank, self).__init__(True)
 
-    def __repr__(self):
-        return 'element_blank({0})'.format(repr(Element.self))
+    def __str__(self):
+        return 'element_blank({0})'.format(super(ElementBlank,self).__str__())

@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with pyRGraph.  If not, see <http://www.gnu.org/licenses/>.
 
-class Element:
+class Element(object):
     def __init__(self, blank):
         self.is_blank = blank
         if blank:
@@ -27,13 +27,25 @@ class Element:
             self.size = 1
 
     def set_colour(self, colour):
-        self.colour = colour
+        if (not self.is_blank):
+            self.colour = colour
+        else:
+            pass
 
     def set_size(self, size):
-        self.size = size
+        if (not self.is_blank):
+            self.size = size
+        else:
+            pass
 
-    def __repr__(self):
+    def get_colour(self):
+        return self.colour
+
+    def get_size(self):
+        return self.size
+
+    def __str__(self):
         if (self.is_blank):
             return ''
         else:
-            return 'colour={0}, size={1}'.format(self.colour, self.size)
+            return 'colour=\"{0}\", size={1}'.format(self.colour, self.size)
