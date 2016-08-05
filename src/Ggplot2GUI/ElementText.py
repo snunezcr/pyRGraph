@@ -29,14 +29,14 @@ class ElementText(Element):
         self.hjust = 0
         self.vjust = 0
         self.angle = 0
-        # lineheight and margin set to None for the moment
-        self.lineheight = None
+        self.lineheight = 1.0
+        # margin set to None for the moment
         self.margin = None
         self.debug = False
 
     # Not implemented for safety
-    def set_family(self):
-        pass
+    def set_family(self, family):
+        self.family = family
 
     # Face settings are implemented as closed options
     def set_face_plain(self):
@@ -61,13 +61,17 @@ class ElementText(Element):
         self.angle = angle
 
     def set_lineheight(self, lineheight):
-        self.lineheight = lineheight
+        if -0.5 <= lineheight <= 2.0:
+            self.lineheight = lineheight
 
     def set_margin(self, margin):
         self.margin = margin
 
     def set_debug(self, debug):
         self.debug = debug
+
+    def get_family(self):
+        return self.family
 
     def get_face(self):
         return self.face
@@ -89,3 +93,19 @@ class ElementText(Element):
 
     def get_debug(self):
         return self.debug
+
+    def __str__(self):
+        mystr = super(ElementText,self).__str__()
+        if self.family is not None:
+            mystr += ', family=\"{0}\"'.format(self.family)
+        if self.face is not None:
+            mystr += ', face=\"{0}\"'.format(self.face)
+        mystr += ', hjust={0}'.format(self.hjust)
+        mystr += ', vjust={0}'.format(self.vjust)
+        mystr += ', angle={0}'.format(self.angle)
+        mystr += ', lineheight={0}'.format(self.lineheight)
+        if self.margin is not None:
+            mystr += ', margin=\"{0}\"'.format(self.margin)
+        if self.debug:
+            mystr += ', debug=TRUE'
+        return 'element_text({0})'.format(mystr)
