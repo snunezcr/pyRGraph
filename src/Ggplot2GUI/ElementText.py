@@ -16,6 +16,7 @@
 # along with pyRGraph.  If not, see <http://www.gnu.org/licenses/>.
 
 from Element import Element
+from Margin import Margin
 
 class ElementText(Element):
     def __init__(self):
@@ -30,8 +31,7 @@ class ElementText(Element):
         self.vjust = 0
         self.angle = 0
         self.lineheight = 1.0
-        # margin set to None for the moment
-        self.margin = None
+        self.margin = Margin()
         self.debug = False
 
     # Not implemented for safety
@@ -104,8 +104,7 @@ class ElementText(Element):
         mystr += ', vjust={0}'.format(self.vjust)
         mystr += ', angle={0}'.format(self.angle)
         mystr += ', lineheight={0}'.format(self.lineheight)
-        if self.margin is not None:
-            mystr += ', margin=\"{0}\"'.format(self.margin)
+        mystr += ', margin={0}'.format(self.margin)
         if self.debug:
             mystr += ', debug=TRUE'
         return 'element_text({0})'.format(mystr)
