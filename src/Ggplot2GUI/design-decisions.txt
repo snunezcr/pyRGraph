@@ -1,0 +1,19 @@
+Design Decisions
+----------------
+
+Given that the approach here will be a managed one, some of the functions
+specified in the standard for ggplot2 version 2.1.0 will not be implemented.
+This choice depends on generating new images at each point. It is simpler, tough
+less efficient.
+
+The following lists indicate what was NOT implemented.
+
+Based on each section of: http://docs.ggplot2.org/current/
+
+Themes:
+* add_theme
+* calc_element
+* is.rel
+* is.theme
+* rel
+* theme_update
